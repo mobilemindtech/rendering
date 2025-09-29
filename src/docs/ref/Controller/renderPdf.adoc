@@ -1,0 +1,16 @@
+= renderPdf
+
+== Purpose
+
+== Examples
+
+[source,java]
+----
+foo.renderPdf(map)
+----
+
+== Description
+
+Arguments:
+
+* `map`

@@ -1,0 +1,16 @@
+= renderPng
+
+== Purpose
+
+== Examples
+
+[source,java]
+----
+foo.renderPng(map)
+----
+
+== Description
+
+Arguments:
+
+* `map`
