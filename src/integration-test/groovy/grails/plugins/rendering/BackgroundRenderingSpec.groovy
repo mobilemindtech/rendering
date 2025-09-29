@@ -15,25 +15,18 @@
  */
 package grails.plugins.rendering
 
-
-
-import java.util.concurrent.TimeUnit
-
+import grails.testing.mixin.integration.Integration
+import spock.lang.Specification
 import spock.util.concurrent.BlockingVariable
-import spock.lang.*
-import grails.test.mixin.integration.IntegrationTestMixin
-import grails.test.mixin.*
 
-@TestMixin(IntegrationTestMixin)
+@Integration
 class BackgroundRenderingSpec extends Specification {
-
-
 
 	def backgroundRenderingService
 
 	def "background render"() {
 		given:
-		def renderError = new BlockingVariable(10, TimeUnit.SECONDS)
+		def renderError = new BlockingVariable(10)
 		when:
 		backgroundRenderingService.fireEvent(renderError)
 		then:

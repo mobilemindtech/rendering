@@ -16,15 +16,15 @@
 
 package grails.plugins.rendering.datauri
 
-import org.apache.commons.codec.binary.Base64
-import spock.lang.*
+
+import spock.lang.Specification
 
 class DataUriSpec extends Specification {
 
 	def "encoding base64 round trip"() {
 		given:
 		def bytes = getRedDotBytes()
-		def base64 = new String(new Base64().encode(bytes), "UTF-8")
+		def base64 = new String(Base64.encoder.encode(bytes), 'UTF-8')
 
 		when:
 		def dataUri = new DataUri("data:base64,$base64")

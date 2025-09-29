@@ -15,15 +15,23 @@
  */
 package grails.plugins.rendering
 
-import spock.lang.*
-import grails.plugins.rest.client.RestBuilder
+
+import org.springframework.http.HttpMethod
+import org.springframework.web.client.RestTemplate
+import spock.lang.Specification
+
 class ControllerRelativeTemplateSpec extends Specification {
 
 	def accessingControllerRelativeTemplateWorks() {
 		when:
-			def rest = new RestBuilder()
-			def resp = rest.get("http://localhost:8080/rendering/relative")
+        RestTemplate restTemplate = new RestTemplate()
+        def resp = restTemplate.exchange(
+                "http://localhost:8080/rendering/relative",
+                HttpMethod.GET,
+                null,
+                String
+        )
 		then:
-			resp.status == 200
+			resp.statusCode.value() == 200
 	}
 }

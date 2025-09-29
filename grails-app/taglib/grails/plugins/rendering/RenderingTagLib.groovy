@@ -15,9 +15,6 @@
  */
 
 package grails.plugins.rendering
-
-import org.apache.commons.codec.binary.Base64
-
 /**
  * @todo need tests for this.
  */
@@ -39,7 +36,7 @@ class RenderingTagLib {
 		out << '<img src="data:'
 		out << mimeType
 		out << ';base64,'
-		out << new String(new Base64().encode(bytes), "UTF-8")
+        out << new String(Base64.encoder.encode(bytes), 'UTF-8')
 		out << '" '
 		attrs.each { k,v -> out << "$k=\"${v ? v.encodeAsHTML() : ''}\" " }
 		out << ' />'
