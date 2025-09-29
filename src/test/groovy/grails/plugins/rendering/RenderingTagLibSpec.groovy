@@ -25,7 +25,7 @@ import spock.lang.Specification
 class RenderingTagLibSpec extends Specification implements TagLibUnitTest<RenderingTagLib> {
 
 	@Shared bytes = [1,2,3] as byte[]
-	@Shared encoded = new String(Base64.getEncoder().encode(bytes), 'UTF-8')
+	@Shared encoded = new String(Base64.encoder.encode(bytes), 'UTF-8')
 	
 	@Shared String template
 

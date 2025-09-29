@@ -66,7 +66,7 @@ class DataUri {
 
 	byte[] getBytes() {
 		if (base64) {
-            Base64.getDecoder().decode(data.getBytes('ASCII'))
+            Base64.decoder.decode(data.getBytes('ASCII'))
 		} else {
 			URLDecoder.decode(data, "ISO-8859-1").getBytes("ISO-8859-1")
 		}

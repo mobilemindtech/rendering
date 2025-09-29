@@ -23,8 +23,6 @@ version "3.0.0-SNAPSHOT"
 group "org.grails.plugins"
 
 apply plugin: 'maven-publish'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin:"org.apache.grails.gradle.grails-plugin"
 apply plugin:"org.apache.grails.gradle.grails-gsp"
 // Used for publishing to central repository, remove if not needed
@@ -48,27 +46,18 @@ repositories {
 }
 
 dependencies {
-    console "org.apache.grails:grails-console"
-    implementation platform("org.apache.grails:grails-bom:$grailsVersion")
-    implementation "org.springframework.boot:spring-boot-starter-logging"
-    implementation "org.springframework.boot:spring-boot-starter-validation"
-    implementation "org.springframework.boot:spring-boot-autoconfigure"
-    implementation "org.springframework.boot:spring-boot-starter"
-    implementation "org.apache.grails:grails-core"
-    implementation "org.apache.grails:grails-gsp"
-    profile "org.apache.grails.profiles:plugin"
+    compileOnly platform("org.apache.grails:grails-bom:$grailsVersion")
+    compileOnly 'org.apache.grails:grails-dependencies-starter-web'
+
     testImplementation "org.apache.grails:grails-testing-support-datamapping"
     testImplementation "org.spockframework:spock-core"
     testImplementation "org.apache.grails:grails-testing-support-web"
 
 
     implementation 'org.xhtmlrenderer:flying-saucer-pdf-openpdf:9.1.22'
-    testImplementation("org.apache.pdfbox:pdfbox:1.0.0") {
+    testImplementation("org.apache.pdfbox:pdfbox:3.0.5") {
         exclude module:'jempbox'
     }
-
-    implementation "org.apache.grails:grails-web-boot"
-    implementation "jakarta.servlet:jakarta.servlet-api:6.1.0"
 }
 
 compileJava.options.release = 17
