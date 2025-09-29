@@ -1,0 +1,16 @@
+= renderGif
+
+== Purpose
+
+== Examples
+
+[source,java]
+----
+foo.renderGif(map)
+----
+
+== Description
+
+Arguments:
+
+* `map`
