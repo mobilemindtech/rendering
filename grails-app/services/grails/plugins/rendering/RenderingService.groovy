@@ -17,7 +17,7 @@ package grails.plugins.rendering
 
 import grails.util.GrailsUtil
 
-import javax.servlet.http.HttpServletResponse
+import jakarta.servlet.http.HttpServletResponse
 
 import org.w3c.dom.Document
 

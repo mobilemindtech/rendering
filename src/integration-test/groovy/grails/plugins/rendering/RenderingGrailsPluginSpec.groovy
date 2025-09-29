@@ -15,17 +15,13 @@
  */
 package grails.plugins.rendering
 
-
+import grails.testing.mixin.integration.Integration
 import grails.util.Holders
-
 import spock.lang.Ignore
+import spock.lang.Specification
 import spock.lang.Unroll
 
-import spock.lang.*
-import grails.test.mixin.integration.IntegrationTestMixin
-import grails.test.mixin.*
-
-@TestMixin(IntegrationTestMixin)
+@Integration
 class RenderingGrailsPluginSpec extends Specification {
 
 	def grailsApplication

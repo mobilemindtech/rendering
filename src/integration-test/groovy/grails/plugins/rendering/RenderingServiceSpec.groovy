@@ -17,15 +17,12 @@ package grails.plugins.rendering
 
 import grails.plugins.rendering.document.UnknownTemplateException
 import grails.plugins.rendering.document.XmlParseException
-
-
+import grails.testing.mixin.integration.Integration
 import org.springframework.mock.web.MockHttpServletResponse
+import spock.lang.Ignore
+import spock.lang.Specification
 
-import spock.lang.*
-import grails.test.mixin.integration.IntegrationTestMixin
-import grails.test.mixin.*
-
-@TestMixin(IntegrationTestMixin)
+@Integration
 abstract class RenderingServiceSpec extends Specification {
 
 	def grailsApplication

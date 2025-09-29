@@ -17,25 +17,17 @@
 package grails.plugins.rendering
 
 import grails.plugins.rendering.datauri.DataUri
+import grails.testing.web.taglib.TagLibUnitTest
+import spock.lang.Shared
 
-import org.apache.commons.codec.binary.Base64
+import spock.lang.Specification
 
-import grails.test.mixin.web.GroovyPageUnitTestMixin
-import spock.lang.*
-import grails.test.mixin.integration.IntegrationTestMixin
-import grails.test.mixin.*
-
-@TestMixin(GroovyPageUnitTestMixin)
-class RenderingTagLibSpec extends Specification {
+class RenderingTagLibSpec extends Specification implements TagLibUnitTest<RenderingTagLib> {
 
 	@Shared bytes = [1,2,3] as byte[]
-	@Shared encoded = new String(new Base64().encode(bytes), "UTF-8")
+	@Shared encoded = new String(Base64.getEncoder().encode(bytes), 'UTF-8')
 	
 	@Shared String template
-
-	def setup() {
-		mockTagLib(RenderingTagLib)
-	}
 
 	protected getOutputMimeType() {
 		getDataUri().mimeType
@@ -62,7 +54,7 @@ class RenderingTagLibSpec extends Specification {
 	def "inline image tag"() {
 		given:
 		params.mimeType = 'abc/123'
-		template = '<rendering:inlineImage mimeType="${mimeType}" bytes="${bytes}" />'
+        template = '<rendering:inlineImage mimeType="${mimeType}" bytes="${bytes}" />'
 
 		expect:
 		outputMimeType == "abc/123"
