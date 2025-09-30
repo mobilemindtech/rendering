@@ -15,29 +15,32 @@
  */
 package grails.plugins.rendering
 
-import grails.plugins.*
 
+import grails.plugins.Plugin
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class RenderingGrailsPlugin extends Plugin {
 
-	def grailsVersion = "7.0 > *"
+    def grailsVersion = "7.0 > *"
 
-	def pluginExcludes = [
-		"grails-app/views/**",
-        "example/**"    
-	]
+    def pluginExcludes = [
+            "grails-app/views/**",
+            "example/**"
+    ]
 
-	def observe = ["controllers"]
-	def loadAfter = ["controllers"]
+    def observe = ["controllers"]
+    def loadAfter = ["controllers"]
 
-	def author = "Grails Plugin Collective"
-	def authorEmail = "grails.plugin.collective@gmail.com"
-	def title = "Grails Rendering"
-	def description = 'Render GSPs as PDFs, JPEGs, GIFs and PNGs'
-	def documentation = "http://gpc.github.com/grails-rendering"
+    def author = "Grails Plugin Collective"
+    def authorEmail = "grails.plugin.collective@gmail.com"
+    def title = "Grails Rendering"
+    def description = 'Render GSPs as PDFs, JPEGs, GIFs and PNGs'
+    def documentation = "http://gpc.github.com/grails-rendering"
 
-	def license = 'APACHE'
-	def organization = [name: 'Grails Plugin Collective', url: 'https://github.com/gpc']
-	def issueManagement = [system: 'JIRA', url: 'https://github.com/gpc/rendering/issues']
-	def scm = [url: 'https://github.com/gpc/rendering.git']
+    def license = 'APACHE'
+    def organization = [name: 'Grails Plugin Collective', url: 'https://github.com/gpc']
+    def issueManagement = [system: 'JIRA', url: 'https://github.com/gpc/rendering/issues']
+    def scm = [url: 'https://github.com/gpc/rendering.git']
 
 }

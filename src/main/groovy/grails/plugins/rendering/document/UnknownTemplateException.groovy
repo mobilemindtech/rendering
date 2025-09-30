@@ -17,7 +17,9 @@
 package grails.plugins.rendering.document
 
 import grails.plugins.rendering.GrailsRenderingException
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class UnknownTemplateException extends GrailsRenderingException {
 
 	UnknownTemplateException(String template, String plugin = null) {
