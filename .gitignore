@@ -10,3 +10,4 @@ grails-rendering-*
 .settings
 .vscode/
 bin/
+.idea
