@@ -1,11 +1,12 @@
+[#rendering]
 = Rendering
 
 There are four services available for rendering:
 
-* pdfRenderingService
-* gifRenderingService
-* pngRenderingService
-* jpegRenderingService
+* `pdfRenderingService`
+* `gifRenderingService`
+* `pngRenderingService`
+* `jpegRenderingService`
 
 All services have the same method:
 

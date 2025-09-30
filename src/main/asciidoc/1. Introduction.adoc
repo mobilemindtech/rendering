@@ -9,11 +9,11 @@ Rendering is either done directly via `«format»RenderingService` services ...
 ByteArrayOutputStream bytes = pdfRenderingService.render(template: "/pdfs/report", model: [data: data])
 ----
 
-Or via the `render«format»()` methods added to controllers ...
+Or via the `render«format»()` methods in `RenderingTrait`  that is to controllers ...
 
 [source,groovy]
 ----
 renderPdf(template: "/pdfs/report", model: [report: reportObject], filename: reportObject.name)
 ----
 
-The plugin is released under the http://www.apache.org/licenses/LICENSE-2.0.html[Apache License 2.0] license and is produced under the http://gpc.github.com/[Grails Plugin Collective].
+The plugin is released under the http://www.apache.org/licenses/LICENSE-2.0.html[Apache License 2.0] license and is produced under the http://github.com/gpc[Grails Plugin Collective].

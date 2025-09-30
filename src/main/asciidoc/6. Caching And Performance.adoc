@@ -1,10 +1,11 @@
+[#caching_and_performance]
 = Caching And Performance
 
-=== Caching
+== Caching
 
-Rendering can be an expensive operation so you may need to implement caching (using the excellent http://grails.org/plugin/springcache[spring-cache] plugin).
+Rendering can be an expensive operation so you may need to implement caching (using the excellent https://github.com/apache/grails-core/tree/7.0.x/grails-cache[grails-cache] plugin).
 
-==== Document Caching
+=== Document Caching
 
 Rendering works internally by creating a `org.w3c.dom.Document` instance from the GSP page via the `xhtmlDocumentService`. If you plan to render the same GSP as different output formats, you may want to cache the created Document.
 
@@ -39,7 +40,7 @@ class CouponController {
 }
 ----
 
-==== Byte Caching
+=== Byte Caching
 
 You can take things further and actually cache the rendered bytes.
 
@@ -75,7 +76,7 @@ class CouponController {
 }
 ----
 
-=== Avoiding Byte Copying
+== Avoiding Byte Copying
 
 When rendering to the response, the content is first written to a temp buffer before being written to the response. This is so the number of bytes can be determined and the `Content-Length` header can be set.
 

@@ -1,6 +1,6 @@
 = Inline Images
 
-This plugin adds support for inline images via http://en.wikipedia.org/wiki/Data_URI_scheme[data URIs]. This is useful for situations where the images you need to imbed in a rendered PDF or image are not accessible via a URL.
+This plugin adds support for inline images via http://en.wikipedia.org/wiki/Data_URI_scheme[data URIs]. This is useful for situations where the images you need to embed in a rendered PDF or image are not accessible via a URL.
 
 For example, your application may generate barcodes that you don't necessarily want to expose but want to include in your generated PDFs or images. Using inline images, you can include the image bytes directly in the output.
 
@@ -14,17 +14,17 @@ Here is an example of how this could be used to include a local (i.e. from the f
 ----
 class SomeController {
     
-    def generate = {
-        def file = new File("path/to/image.png")
-        renderPng(template: "thing", model: [imageBytes: file.bytes])
-    }
-    
+    def generate() {
+        URL resource = this.class.getResource("/path/to/image.png")
+        renderPng(template: "thing", model: [imageBytes: resource.bytes])
+    } 
 }
 ----
 
 In the view ...
 
 [source,html]
+._thing.gsp
 ----
 <html>
     <head></head>

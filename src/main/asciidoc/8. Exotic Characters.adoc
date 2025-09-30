@@ -4,7 +4,7 @@ In most cases, there are no issues with dealing with exotic Unicode characters. 
 
 This http://www.mail-archive.com/itext-questions@lists.sourceforge.net/msg48788.html[thread] explains the issue.
 
-The solution is to register the font to use with a particular encoding. Because we are using XHTMLRenderer we can specify this in CSS as opposed to programatically registering.
+The solution is to register the font to use with a particular encoding. Because we are using XHTMLRenderer we can specify this in CSS as opposed to programmatically registering.
 
 [source,css]
 ----
@@ -17,4 +17,4 @@ body {
   font-family: "Arial Unicode MS", Arial, sans-serif;
 }
 ----
-See http://pigeonholdings.com/projects/flyingsaucer/R8/doc/guide/users-guide-R8.html#xil_44[this page] for details on these CSS directives.
+See https://flyingsaucerproject.github.io/flyingsaucer/r8/guide/users-guide-R8.html#xil_43[this page] for details on these CSS directives.
