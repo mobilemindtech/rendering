@@ -15,25 +15,28 @@
  */
 package grails.plugins.rendering
 
+import grails.core.GrailsApplication
+import grails.plugins.rendering.document.XhtmlDocumentService
 import grails.util.GrailsUtil
-
+import groovy.transform.CompileStatic
 import jakarta.servlet.http.HttpServletResponse
 
 import org.w3c.dom.Document
 
+@CompileStatic
 abstract class RenderingService {
 
 	static transactional = false
 
-	def xhtmlDocumentService
-	def grailsApplication
+    XhtmlDocumentService xhtmlDocumentService
+    GrailsApplication grailsApplication
 
 	protected abstract doRender(Map args, Document document, OutputStream outputStream)
 
-	protected abstract getDefaultContentType()
+	protected abstract String getDefaultContentType()
 
 	OutputStream render(Map args, OutputStream outputStream = new ByteArrayOutputStream()) {
-		def document = args.document ?: xhtmlDocumentService.createDocument(args)
+		Document document = args.document as Document ?: xhtmlDocumentService.createDocument(args)
 		render(args, document, outputStream)
 	}
 
@@ -54,15 +57,15 @@ abstract class RenderingService {
 	boolean render(Map args, HttpServletResponse response) {
 		processArgs(args)
 		if (args.bytes) {
-			writeToResponse(args, response, args.bytes)
+			writeToResponse(args, response, args.bytes as byte[])
 		} else if (args.input) {
-			writeToResponse(args, response, args.input)
+			writeToResponse(args, response, args.input as InputStream)
 		} else {
 			if (args.stream) {
 				configureResponse(args, response)
 				render(args, response.outputStream)
 			} else {
-				writeToResponse(args, response, render(args).toByteArray())
+				writeToResponse(args, response, (render(args) as ByteArrayOutputStream).toByteArray())
 			}
 		}
 		false
@@ -70,8 +73,8 @@ abstract class RenderingService {
 
 	protected writeToResponse(Map args, HttpServletResponse response, InputStream input) {
 		configureResponse(args, response)
-		if (args.contentLength > 0) {
-			response.setContentLength(args.contentLength)
+		if ((args.contentLength as int) > 0) {
+			response.setContentLength(args.contentLength as int)
 		}
 		response.outputStream << input
 	}
@@ -92,7 +95,7 @@ abstract class RenderingService {
 	}
 
 	protected setContentType(Map args, HttpServletResponse response) {
-		response.setContentType(args.contentType ?: getDefaultContentType())
+		response.setContentType(args.contentType as String ?: getDefaultContentType())
 	}
 
 	protected setContentDisposition(Map args, HttpServletResponse response) {
@@ -103,7 +106,7 @@ abstract class RenderingService {
 
 	protected processArgs(Map args) {
 		if (!args.base) {
-			args.base = grailsApplication.config.grails.serverURL ?: null
+			args.base = grailsApplication.config.get('grails.serverURL') ?: null
 		}
 	}
 }

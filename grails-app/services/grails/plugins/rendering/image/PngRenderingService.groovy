@@ -15,13 +15,16 @@
  */
 package grails.plugins.rendering.image
 
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class PngRenderingService extends ImageRenderingService {
 
-	protected getImageType() {
+	protected String getImageType() {
 		"png"
 	}
 
-	protected getDefaultContentType() {
+	protected String getDefaultContentType() {
 		"image/png"
 	}
 }

@@ -1,5 +1,6 @@
 package grails.plugins.rendering.document
 
+import grails.util.Environment
 import grails.util.GrailsWebMockUtil
 
 import org.grails.web.servlet.WrappedResponseHolder
@@ -27,6 +28,7 @@ class RenderEnvironment {
 	}
 
 	private init() {
+        if(Environment.current == Environment.TEST) {
 		originalRequestAttributes = RequestContextHolder.getRequestAttributes()
 		renderRequestAttributes = GrailsWebMockUtil.bindMockWebRequest(applicationContext)
 
@@ -46,11 +48,16 @@ class RenderEnvironment {
 
 		renderRequestAttributes.setOut(out)
 		WrappedResponseHolder.wrappedResponse = renderRequestAttributes.currentResponse
-	}
+
+        }
+
+    }
 
 	private close() {
-		RequestContextHolder.setRequestAttributes(originalRequestAttributes) // null ok
-		WrappedResponseHolder.wrappedResponse = originalRequestAttributes?.currentResponse
+        if(originalRequestAttributes) {
+            RequestContextHolder.setRequestAttributes(originalRequestAttributes) // null ok
+            WrappedResponseHolder.wrappedResponse = originalRequestAttributes?.currentResponse
+        }
 	}
 
 	/**

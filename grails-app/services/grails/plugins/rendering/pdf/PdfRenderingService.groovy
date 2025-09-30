@@ -17,11 +17,12 @@ package grails.plugins.rendering.pdf
 
 import grails.plugins.rendering.RenderingService
 import grails.plugins.rendering.datauri.DataUriAwareITextUserAgent
-
+import groovy.transform.CompileStatic
 import org.springframework.util.ReflectionUtils
 import org.w3c.dom.Document
 import org.xhtmlrenderer.pdf.ITextRenderer
 
+@CompileStatic
 class PdfRenderingService extends RenderingService {
 
 	static transactional = false
@@ -33,16 +34,16 @@ class PdfRenderingService extends RenderingService {
 	protected doRender(Map args, Document document, OutputStream outputStream) {
 		def renderer = new ITextRenderer()
 		configureRenderer(renderer)
-		renderer.setDocument(document, args.base)
+		renderer.setDocument(document, args.base as String)
 		renderer.layout()
 		renderer.createPDF(outputStream)
 	}
 
-	protected getDefaultContentType() {
+	protected String getDefaultContentType() {
 		"application/pdf"
 	}
 
-	protected configureRenderer(ITextRenderer renderer) {
+	protected void configureRenderer(ITextRenderer renderer) {
 		def outputDevice = renderer.@_outputDevice
 		def userAgent = new DataUriAwareITextUserAgent(outputDevice)
 		def sharedContext = renderer.sharedContext

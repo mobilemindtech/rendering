@@ -15,19 +15,22 @@
  */
 package grails.plugins.rendering.image
 
+import groovy.transform.CompileStatic
+
 import java.awt.image.BufferedImage
 
+@CompileStatic
 class JpegRenderingService extends ImageRenderingService {
 
-	protected getImageType() {
+	protected String getImageType() {
 		"jpeg"
 	}
 
-	protected getDefaultContentType() {
+	protected String getDefaultContentType() {
 		"image/jpeg"
 	}
 
-	protected getDefaultBufferedImageType() {
+	protected int getDefaultBufferedImageType() {
 		BufferedImage.TYPE_INT_RGB
 	}
 }
