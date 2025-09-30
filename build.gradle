@@ -99,11 +99,16 @@ grailsPublish {
     title = 'Rendering Plugin'
     desc = 'Render GSPs as PDFs, JPEGs, GIFs and PNGs'
     developers = [
-            ldaley: 'Luke Daley',
-            graemerocher: 'Graeme Rocher',
-            rd: 'Randall Dietz',
-            sbglasius   : 'Søren Berg Glasius',
-            burtbeckwith: 'Burt Beckwith',
+            ldaley      : "Luke Daley",
+            graemerocher: "Graeme Rocher",
+            burtbeckwith: "Burt Beckwith",
+            sbglasius   : "Søren Berg Glasius",
+            magx2       : "Martin",
+            Ari651      : "Ari Bustamante",
+            billgonemad : "William Malinowski",
+            ZacharyKlein: "Zachary Klein",
+            halfbaked   : "Eamonn O'Connell",
+            codeconsole : "Scott Murphy",
     ]
 }
 

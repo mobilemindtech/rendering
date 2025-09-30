@@ -1,3 +1,1 @@
-* Luke Daley - Grails Plugin Collective
-* Graeme Rocher - Grails Plugin Collective
-* Randall Dietz - Software Projects
+See https://github.com/gpc/rendering/graphs/contributors for contributors
