@@ -70,9 +70,6 @@ dependencies {
     testImplementation "org.spockframework:spock-core"
     
     implementation project(':')
-    implementation("org.apache.pdfbox:pdfbox:3.0.5") {
-        exclude module: 'jempbox'
-    }
 
 }
 
