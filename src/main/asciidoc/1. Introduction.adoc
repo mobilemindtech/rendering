@@ -17,3 +17,12 @@ renderPdf(template: "/pdfs/report", model: [report: reportObject], filename: rep
 ----
 
 The plugin is released under the http://www.apache.org/licenses/LICENSE-2.0.html[Apache License 2.0] license and is produced under the http://github.com/gpc[Grails Plugin Collective].
+
+== Your plugin dependency
+
+Add the following to your dependencies:
+
+[source,groovy,subs=attributes+]
+----
+implementation 'io.github.gpc:rendering:{revnumber}'
+----
