@@ -67,7 +67,7 @@ jobs:
           GRAILS_PUBLISH_RELEASE: 'true'
           NEXUS_PUBLISH_USERNAME: ${{ secrets.NEXUS_PUBLISH_USERNAME }}
           NEXUS_PUBLISH_PASSWORD: ${{ secrets.NEXUS_PUBLISH_PASSWORD }}
-          NEXUS_PUBLISH_URL: 'https://ossrh-staging-api.central.sonatype.com/service/local/'
+          NEXUS_PUBLISH_URL: ${{ secrets.NEXUS_PUBLISH_RELEASE_URL }}
           NEXUS_PUBLISH_DESCRIPTION: '${{ steps.extract_repository_name.outputs.repository_name }}:${{ steps.release_version.outputs.value }}'
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSPHRASE: ${{ secrets.SIGNING_PASSPHRASE }}
@@ -111,7 +111,7 @@ jobs:
           GRAILS_PUBLISH_RELEASE: 'true'
           NEXUS_PUBLISH_USERNAME: ${{ secrets.NEXUS_PUBLISH_USERNAME }}
           NEXUS_PUBLISH_PASSWORD: ${{ secrets.NEXUS_PUBLISH_PASSWORD }}
-          NEXUS_PUBLISH_URL: 'https://ossrh-staging-api.central.sonatype.com/service/local/'
+          NEXUS_PUBLISH_URL: ${{ secrets.NEXUS_PUBLISH_RELEASE_URL }} 
           NEXUS_PUBLISH_DESCRIPTION: '${{ needs.publish.outputs.extract_repository_name }}:${{ needs.publish.outputs.release_version }}'
         run: >
           ./gradlew
@@ -121,8 +121,8 @@ jobs:
         if: ${{ hashFiles('src/main/asciidoc/**') != '' }}
         run: ./gradlew docs
       - name: "📤 Publish Documentation to Github Pages"
-        if: ${{ hashFiles('src/main/asciidoc/**') != '' }}
         uses: apache/grails-github-actions/deploy-github-pages@asf
+        if: ${{ hashFiles('src/main/asciidoc/**') != '' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GRADLE_PUBLISH_RELEASE: 'true'
