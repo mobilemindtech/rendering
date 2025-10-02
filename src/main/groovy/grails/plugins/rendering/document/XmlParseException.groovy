@@ -17,10 +17,17 @@
 package grails.plugins.rendering.document
 
 import grails.plugins.rendering.GrailsRenderingException
+import groovy.transform.CompileStatic
+import org.xml.sax.InputSource
 
+@CompileStatic
 class XmlParseException extends GrailsRenderingException {
 
-	XmlParseException(xml, cause) {
+	XmlParseException(String xml, Exception cause) {
+		super("Could not parse: $xml", cause)
+	}
+    
+	XmlParseException(InputSource xml, Exception cause) {
 		super("Could not parse: $xml", cause)
 	}
 

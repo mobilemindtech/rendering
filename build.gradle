@@ -1,3 +1,7 @@
+import java.time.Instant
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
+
 buildscript {
     ext {
         grailsVersion = project.grailsVersion
@@ -19,18 +23,23 @@ buildscript {
     }
 }
 
-version "3.0.0-SNAPSHOT"
+version = projectVersion
 group "org.grails.plugins"
 
 apply plugin: 'maven-publish'
 apply plugin:"org.apache.grails.gradle.grails-plugin"
 apply plugin:"org.apache.grails.gradle.grails-gsp"
-// Used for publishing to central repository, remove if not needed
-//apply from:'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/grailsCentralPublishing.gradle'
+apply plugin: 'org.apache.grails.gradle.grails-publish'
+apply plugin: 'java-library'
 
 ext {
-    grailsVersion = project.grailsVersion
-    gradleWrapperVersion = project.gradleWrapperVersion
+    buildInstant = java.util.Optional.ofNullable(System.getenv("SOURCE_DATE_EPOCH"))
+            .filter(s -> !s.isEmpty())
+            .map(Long::parseLong)
+            .map(Instant::ofEpochSecond)
+            .orElseGet(Instant::now) as Instant
+    formattedBuildDate = DateTimeFormatter.ISO_INSTANT.format(buildInstant)
+    buildDate = buildInstant.atZone(ZoneOffset.UTC) // for reproducible builds
 }
 
 repositories {
@@ -49,15 +58,15 @@ dependencies {
     compileOnly platform("org.apache.grails:grails-bom:$grailsVersion")
     compileOnly 'org.apache.grails:grails-dependencies-starter-web'
 
+    api('org.xhtmlrenderer:flying-saucer-pdf-openpdf:9.4.0') 
+    api("org.apache.pdfbox:pdfbox:3.0.5") 
+
+    testImplementation platform("org.apache.grails:grails-bom:$grailsVersion")
     testImplementation "org.apache.grails:grails-testing-support-datamapping"
     testImplementation "org.spockframework:spock-core"
     testImplementation "org.apache.grails:grails-testing-support-web"
 
 
-    implementation 'org.xhtmlrenderer:flying-saucer-pdf-openpdf:9.1.22'
-    testImplementation("org.apache.pdfbox:pdfbox:3.0.5") {
-        exclude module:'jempbox'
-    }
 }
 
 compileJava.options.release = 17
@@ -73,4 +82,36 @@ jar {
 
 tasks.withType(Test).configureEach {
     useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+    }
 }
+
+groovydoc {
+    excludes = ['**/*GrailsPlugin.groovy', '**/Application.groovy']
+}
+
+grailsPublish {
+    githubSlug = 'gpc/rendering'
+    license {
+        name = 'Apache-2.0'
+    }
+    title = 'Rendering Plugin'
+    desc = 'Render GSPs as PDFs, JPEGs, GIFs and PNGs'
+    developers = [
+            ldaley      : "Luke Daley",
+            graemerocher: "Graeme Rocher",
+            burtbeckwith: "Burt Beckwith",
+            sbglasius   : "Søren Berg Glasius",
+            magx2       : "Martin",
+            Ari651      : "Ari Bustamante",
+            billgonemad : "William Malinowski",
+            ZacharyKlein: "Zachary Klein",
+            halfbaked   : "Eamonn O'Connell",
+            codeconsole : "Scott Murphy",
+    ]
+}
+
+compileJava.options.release = javaVersion.toInteger()
+
+apply from: layout.projectDirectory.file('gradle/docs-config.gradle')

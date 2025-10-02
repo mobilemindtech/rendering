@@ -15,13 +15,16 @@
  */
 package grails.plugins.rendering.image
 
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class GifRenderingService extends ImageRenderingService {
 
-	protected getImageType() {
+	protected String getImageType() {
 		"gif"
 	}
 
-	protected getDefaultContentType() {
+	protected String getDefaultContentType() {
 		"image/gif"
 	}
 }

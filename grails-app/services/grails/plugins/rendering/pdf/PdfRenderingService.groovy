@@ -16,38 +16,24 @@
 package grails.plugins.rendering.pdf
 
 import grails.plugins.rendering.RenderingService
-import grails.plugins.rendering.datauri.DataUriAwareITextUserAgent
-
-import org.springframework.util.ReflectionUtils
+import groovy.transform.CompileStatic
 import org.w3c.dom.Document
 import org.xhtmlrenderer.pdf.ITextRenderer
 
+@CompileStatic
 class PdfRenderingService extends RenderingService {
 
-	static transactional = false
+    static transactional = false
 
-	PdfRenderingService() {
-		ReflectionUtils.makeAccessible(ITextRenderer.getDeclaredField("_outputDevice"))
-	}
+    protected doRender(Map args, Document document, OutputStream outputStream) {
+        def renderer = new ITextRenderer()
+        renderer.setDocument(document, args.base as String)
+        renderer.layout()
+        renderer.createPDF(outputStream)
+    }
 
-	protected doRender(Map args, Document document, OutputStream outputStream) {
-		def renderer = new ITextRenderer()
-		configureRenderer(renderer)
-		renderer.setDocument(document, args.base)
-		renderer.layout()
-		renderer.createPDF(outputStream)
-	}
+    protected String getDefaultContentType() {
+        "application/pdf"
+    }
 
-	protected getDefaultContentType() {
-		"application/pdf"
-	}
-
-	protected configureRenderer(ITextRenderer renderer) {
-		def outputDevice = renderer.@_outputDevice
-		def userAgent = new DataUriAwareITextUserAgent(outputDevice)
-		def sharedContext = renderer.sharedContext
-
-		sharedContext.userAgentCallback = userAgent
-		userAgent.sharedContext = sharedContext
-	}
 }

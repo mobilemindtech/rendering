@@ -16,6 +16,9 @@
 
 package grails.plugins.rendering.datauri
 
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class DataUri {
 
 	// Default values sourced from http://en.wikipedia.org/wiki/Data_URI_scheme
@@ -38,7 +41,9 @@ class DataUri {
 			throw new IllegalArgumentException("data url does not contain a ',' delimiter: " + value)
 		}
 
-		def (metadata, data) = value.split(",", 2)
+        def split = value.split(",", 2)
+        String metadata = split[0]
+        String data = split[1]
 		if (metadata != "") {
 			processMetadata(metadata.split(';'))
 		}

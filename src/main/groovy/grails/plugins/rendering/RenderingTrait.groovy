@@ -21,12 +21,14 @@ import grails.plugins.rendering.image.JpegRenderingService
 import grails.plugins.rendering.image.PngRenderingService
 import grails.plugins.rendering.pdf.PdfRenderingService
 import grails.web.api.ServletAttributes
+import groovy.transform.CompileStatic
 import org.springframework.beans.factory.annotation.Autowired
 
 /**
  * Trait that applies to controllers adding new methods for rendering PDFs, Gif etc.
  */
 @Enhances("Controller")
+@CompileStatic
 trait RenderingTrait extends ServletAttributes{
 
 	@Autowired(required = false)

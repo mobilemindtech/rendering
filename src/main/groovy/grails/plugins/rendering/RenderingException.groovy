@@ -16,9 +16,12 @@
 
 package grails.plugins.rendering
 
+import groovy.transform.CompileStatic
+
+@CompileStatic
 class RenderingException extends GrailsRenderingException {
 
-	RenderingException(cause) {
+	RenderingException(Exception cause) {
 		super("Render failure", cause)
 	}
 

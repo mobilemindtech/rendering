@@ -1,12 +1,9 @@
 build/
 .gradle/
-target
-plugin.xml
-docs
 *.log
 *.zip
 .DS_Store
-grails-rendering-*
 .settings
 .vscode/
 bin/
+.idea

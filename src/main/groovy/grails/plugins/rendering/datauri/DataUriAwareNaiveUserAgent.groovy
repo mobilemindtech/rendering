@@ -16,26 +16,27 @@
 
 package grails.plugins.rendering.datauri
 
-import org.slf4j.LoggerFactory
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
 import org.xhtmlrenderer.swing.NaiveUserAgent
 
+@Slf4j
+@CompileStatic
 class DataUriAwareNaiveUserAgent extends NaiveUserAgent {
 
-	private static log = LoggerFactory.getLogger(this)
+    protected InputStream resolveAndOpenStream(String uri) {
+        if (DataUri.isDataUri(uri)) {
+            new DataUri(uri).inputStream
+        } else {
+            super.resolveAndOpenStream(uri)
+        }
+    }
 
-	protected InputStream resolveAndOpenStream(String uri) {
-		if (DataUri.isDataUri(uri)) {
-			new DataUri(uri).inputStream
-		} else {
-			super.resolveAndOpenStream(uri)
-		}
-	}
-
-	String resolveURI(String uri) {
-		if (DataUri.isDataUri(uri)) {
-			uri
-		} else {
-			super.resolveURI(uri)
-		}
-	}
+    String resolveURI(String uri) {
+        if (DataUri.isDataUri(uri)) {
+            uri
+        } else {
+            super.resolveURI(uri)
+        }
+    }
 }

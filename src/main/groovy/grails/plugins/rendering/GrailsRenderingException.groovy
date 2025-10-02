@@ -16,10 +16,10 @@
 
 package grails.plugins.rendering
 
+import groovy.transform.CompileStatic
+import groovy.transform.InheritConstructors
+
+@CompileStatic
+@InheritConstructors
 class GrailsRenderingException extends RuntimeException {
-
-	GrailsRenderingException(CharSequence message, Throwable cause = null) {
-		super(message.toString(), cause)
-	}
-
 }
