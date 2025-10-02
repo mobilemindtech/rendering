@@ -59,8 +59,10 @@ jobs:
           MAVEN_PUBLISH_URL: 'https://repo.grails.org/artifactory/plugins3-snapshots-local'
         run: ./gradlew publish
       - name: "📖 Generate Snapshot Documentation"
+        if: ${{ hashFiles('src/main/asciidoc/**') != '' }}
         run: ./gradlew docs
       - name: "📤 Publish Snapshot Documentation to Github Pages"
+        if: ${{ hashFiles('src/main/asciidoc/**') != '' }}
         uses: apache/grails-github-actions/deploy-github-pages@asf
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

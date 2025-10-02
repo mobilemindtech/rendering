@@ -118,8 +118,10 @@ jobs:
           findSonatypeStagingRepository
           releaseSonatypeStagingRepository
       - name: "📖 Generate Documentation"
+        if: ${{ hashFiles('src/main/asciidoc/**') != '' }}
         run: ./gradlew docs
       - name: "📤 Publish Documentation to Github Pages"
+        if: ${{ hashFiles('src/main/asciidoc/**') != '' }}
         uses: apache/grails-github-actions/deploy-github-pages@asf
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
