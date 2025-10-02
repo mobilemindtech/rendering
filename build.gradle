@@ -24,7 +24,7 @@ buildscript {
 }
 
 version = projectVersion
-group "org.grails.plugins"
+group = "io.github.gpc"
 
 apply plugin: 'maven-publish'
 apply plugin:"org.apache.grails.gradle.grails-plugin"
