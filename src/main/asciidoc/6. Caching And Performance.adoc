@@ -12,9 +12,10 @@ Rendering works internally by creating a `org.w3c.dom.Document` instance from th
 [source,groovy]
 ----
 import grails.plugin.springcache.annotations.Cacheable
+import grails.plugins.rendering.document.XhtmlDocumentService
 
 class CouponDocumentService {
-    def xhmlDocumentService
+    XhtmlDocumentService xhmlDocumentService
 
     @Cacheable('couponDocumentCache')
     class getDocument(serial) {
@@ -29,13 +30,12 @@ All of the render methods can take a `document` parameter instead of the usual `
 ----
 class CouponController {
     
-    def couponDocumentService
+    CouponDocumentService couponDocumentService
     
-    def gif = {
-        def serial = params.id
-        def document = couponDocumentService.getDocument(serial)
+    def gif(String id) {
+        def document = couponDocumentService.getDocument(id)
         
-        renderGif(filename: "${serial}.gif", document)
+        renderGif(filename: "${id}.gif", document)
     }
 }
 ----
@@ -50,8 +50,8 @@ import grails.plugin.springcache.annotations.Cacheable
 
 class CouponGifService {
 
-    def couponDocumentService
-    def gifRenderingService
+    CouponDocumentService couponDocumentService
+    GifRenderingService gifRenderingService
 
     def getGif(serial) {
         def document = couponDocumentService.getDocument(serial)
@@ -65,13 +65,12 @@ class CouponGifService {
 ----
 class CouponController {
     
-    def couponGifService
+    CouponDocumentService couponDocumentService
     
-    def gif = {
-        def serial = params.id
-        def bytes = couponGifService.getGif(serial)
+    def gif(String id) {
+        def document = couponDocumentService.getDocument(id)
         
-        renderGif(bytes: bytes, filename: "${serial}.gif")
+        renderGif(filename: "${id}.gif", document)
     }
 }
 ----
