@@ -30,7 +30,7 @@ new File("coupon.jpg").withOutputStream { outputStream ->
 }
 ----
 
-For information on rendering to the HTTP response, see <<guide:5. Rendering To The Response,Rendering To The Response>>.
+For information on rendering to the HTTP response, see <<rendering-to-the-response,Rendering To The Response>>.
 
 === Basic Render Arguments
 
