@@ -1,6 +1,6 @@
 = Introduction
 
-This plugin adds additional rendering capabilities to Grails applications via the https://xhtmlrenderer.dev.java.net/[XHTML Renderer] library.
+This plugin adds additional rendering capabilities to Grails applications via the https://github.com/flyingsaucerproject/flyingsaucer[XHTML Renderer] library.
 
 Rendering is either done directly via `«format»RenderingService` services ...
 
