@@ -10,7 +10,7 @@ Install
 
 To install just add to the dependency block in the `build.gradle`
 
-For Grail 7.x
+For Grails 7.x
 ```groovy
 implementation 'io.github.gpc:rendering:7.0.0-RC1'
 ```
