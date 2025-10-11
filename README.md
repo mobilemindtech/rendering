@@ -8,7 +8,7 @@ This plugin adds PDF, GIF, PNG and JPEG rendering facilities to Grails applicati
 Install
 -------
 
-To install just add to the dependency block in teh `build.gradle`
+To install just add to the dependency block in the `build.gradle`
 
 For Grail 7.x
 ```groovy
