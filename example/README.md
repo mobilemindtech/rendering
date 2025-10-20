@@ -1,13 +1,13 @@
 ## Grails 7.0.0-RC2 Documentation
 
-- [User Guide](https://docs.grails.org/7.0.0-RC2/guide/index.html)
-- [API Reference](https://docs.grails.org/7.0.0-RC2/api/index.html)
+- [User Guide](https://grails.apache.org/docs/7.0.0/guide/)
+- [API Reference](https://grails.apache.org/docs/7.0.0/api/)
 - [Grails Guides](https://guides.grails.org/index.html)
 ---
 
 ## Feature scaffolding documentation
 
-- [Grails Scaffolding documentation](https://docs.grails.org/7.0.0-RC2/guide/scaffolding.html)
+- [Grails Scaffolding documentation](https://grails.apache.org/docs/7.0.0/guide/scaffolding.html)
 
 ## Feature asset-pipeline-grails documentation
 
@@ -19,7 +19,7 @@
 
 ## Feature geb-with-testcontainers documentation
 
-- [Grails Geb Functional Testing for Grails with Testcontainers documentation](https://github.com/apache/grails-geb#readme)
+- [Grails Geb Functional Testing for Grails with Testcontainers documentation](https://github.com/apache/grails-core/tree/HEAD/grails-geb#readme)
 
 - [https://groovy.apache.org/geb/manual/current/](https://groovy.apache.org/geb/manual/current/)
 

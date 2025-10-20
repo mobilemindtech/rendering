@@ -36,11 +36,11 @@ class RenderingGrailsPlugin extends Plugin {
     def authorEmail = "grails.plugin.collective@gmail.com"
     def title = "Grails Rendering"
     def description = 'Render GSPs as PDFs, JPEGs, GIFs and PNGs'
-    def documentation = "http://gpc.github.com/grails-rendering"
+    def documentation = "https://gpc.github.io/rendering/"
 
     def license = 'APACHE'
     def organization = [name: 'Grails Plugin Collective', url: 'https://github.com/gpc']
-    def issueManagement = [system: 'JIRA', url: 'https://github.com/gpc/rendering/issues']
+    def issueManagement = [system: 'GitHub', url: 'https://github.com/gpc/rendering/issues']
     def scm = [url: 'https://github.com/gpc/rendering.git']
 
 }
